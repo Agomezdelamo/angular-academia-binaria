@@ -1,0 +1,33 @@
+<!-- RENDERIZO O UNA TABLA O UNA LISTA VACIA -->
+<ng-template [ngIf]="hayLista" [ngIfElse]="noHayTemplate">
+    <h1>hay una lista y tiene resultados</h1>
+</ng-template>
+
+<ng-template #noHayTemplate>
+    <h2>no hay ninguna lista</h2>
+</ng-template>
+
+
+<table *ngIf="numberOfOperations>0;else emptyList">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Kind</th>
+            <th>Amount</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let operation of operations">
+            <td><a [routerLink]="['/operations/tipo/'+operation._id]">{{ operation._id }}</a></td>
+            <td>{{ operation.descripcion }}</td>
+            <td>{{ operation.tipoDeOperacion }}</td>
+            <td>{{ operation.valor | number:'7.2-2' }}</td>
+            <td><button (click)="quieroEliminarAlgo(operation)">Delete</button> </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #emptyList>
+    <h2>La lista esta vacia</h2>
+</ng-template>

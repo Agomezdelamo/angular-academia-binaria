@@ -1,0 +1,10 @@
+<h1>
+    Formulario de operaciones
+</h1>
+<h1>ComponentePadre</h1>
+<section class="displayFlex">
+    {{message}}
+    <app-new-operation (quieroSalvarUnaOperacion)="salvar($event)"></app-new-operation>
+    <app-list-operations [numberOfOperations]="numberOfOperations" [operations]="operations" [hayLista]="hayLista" (quieroEliminarUnaOperacion)="borrar($event)"></app-list-operations>
+
+</section>

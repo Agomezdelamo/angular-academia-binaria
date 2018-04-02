@@ -1,0 +1,36 @@
+<form (ngSubmit)="enviarFormulario(miFormulario)" #miFormulario="ngForm" novalidate>
+    <label for="description">Descripción</label>
+    <span class="info">es valido el input <strong>{{inputDescription.valid}}</strong></span>
+    <span class="info">NO se ha cambiado el valor del input desde que cargo la pagina? <strong>{{inputDescription.pristine}}</strong></span>
+    <span class="info">esta cambiado el valor del input <strong>{{inputDescription.dirty}}</strong></span>
+    <input type="text" name="description" #inputDescription="ngModel" [(ngModel)]="operation.descripcion" required />
+
+    <!-- TIPOS DE VALIDACION EN ANGULAR 2 -->
+    <!-- 
+            input visitado(ng-touched) o no(ng-untouched).		
+            input a cambiado(ng-dirty) o no(ng-pristine).		
+            El valor es valido(ng-valid) o no(ng-invalid).		
+    -->
+    <div *ngIf="!inputDescription.valid || inputDescription.pristine" class="alert alert-danger">
+        <!-- si el valor es valido o no esta tocado esto esta oculto -->
+        valor requerido
+    </div>
+
+    <label for="cantidad">Cantidad</label>
+    <!-- con ngModel y bananaInABox tengo el valor que sea completamente actualizado del controlador a la vista y al reves -->
+    <!-- creamos el idangular #elvalor y le decimos que es de tipo ngModel-->
+    <input type="number" name="cantidad" [(ngModel)]="operation.valor" #inputCantidad="ngModel" required/>
+
+
+
+    <label for="claseOperacion">Clase de operacion</label>
+    <select name="claseOperacion" [(ngModel)]="operation.tipoDeOperacion" required #inputClase="ngModel">
+        <option [value]="">Elige una opcion</option>
+        <option *ngFor="let oper of listaTiposOperacion" [value]="oper">{{oper}}</option>
+    </select>
+
+    <button [disabled]="!miFormulario.form.valid">Enviar formulario</button>
+    <pre>Este es el objeto del formulario
+        {{miFormulario.value | json}}</pre>
+</form>
+<button (click)="saveOperation()">Guardar Operacion</button>

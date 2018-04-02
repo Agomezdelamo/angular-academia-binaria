@@ -1,0 +1,33 @@
+form {
+    border: 2px solid black;
+}
+
+form>* {
+    display: block;
+    margin: 0 auto;
+}
+
+.alert {
+    color: red;
+}
+
+.info {
+    color: blue;
+}
+
+.displayFlex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.displayFlex>* {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+app-new-operation {
+    background: peru;
+    padding: 20px;
+}
